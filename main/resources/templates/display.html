@@ -11,8 +11,11 @@
           <th>ID</th>
           <th>Name</th>
           <th>Class</th>
-          <th>Attendance Count</th>
-          <th>Approved Ask for Leave</th>
+          <th>Attendance</th>
+          <th>Ask for Leave</th>
+          <th>Take Attendance</th>
+          <th>Take Ask for Leave</th>
+          <th>Remove Record</th>
         </tr>
         <tr th:each="student: ${students}">
           <td th:text="${student.id}" />
@@ -21,16 +24,68 @@
           <td th:text="${student.attendance_count}" />
           <td th:text="${student.ask_leave_count}" />
           <td>
+            <div class="container-td">
+              <form
+                action=""
+                th:action="@{/attend/{id}(id=${student.id})}"
+                method="post"
+              >
+                <button type="submit">+</button>
+              </form>
+              <form
+                action=""
+                th:action="@{/cancel_attend/{id}(id=${student.id})}"
+                method="post"
+              >
+                <button type="submit">-</button>
+              </form>
+            </div>
+          </td>
+          <td>
+            <div class="container-td">
+              <form
+                action=""
+                th:action="@{/ask_leave/{id}(id=${student.id})}"
+                method="post"
+              >
+                <button type="submit">+</button>
+              </form>
+              <form
+                action=""
+                th:action="@{/remove_ask_leave/{id}(id=${student.id})}"
+                method="post"
+              >
+                <button type="submit">-</button>
+              </form>
+            </div>
+          </td>
+          <td>
             <form
               action=""
               th:action="@{/remove/{id}(id=${student.id})}"
               method="post"
             >
-              <button type="submit">-</button>
+              <button type="submit">Remove</button>
             </form>
           </td>
         </tr>
       </table>
+
+      <!-- Error message for when attendance record is already 0 -->
+      <script th:inline="javascript">
+        var errorMessage = /*[[${errMsgAttend}]]*/ null;
+        if (errorMessage) {
+          alert("Attendance count is already 0");
+        }
+      </script>
+
+      <!-- Error message when ask for leave record is already 0 -->
+      <script th:inline="javascript">
+        var errorMessage = /*[[${errMsgAskLeave}]]*/ null;
+        if (errorMessage) {
+          alert("Ask for leave count is already 0");
+        }
+      </script>
 
       <a href="/add">Back</a>
     </div>

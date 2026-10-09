@@ -7,12 +7,7 @@
   <body>
     <div class="container" id="add_container">
       <h1>Add a Student</h1>
-      <form
-        action="#"
-        th:action="@{/add}"
-        th:object="${student}"
-        method="post"
-      >
+      <form action="#" th:action="@{/add}" th:object="${student}" method="post">
         <p>
           Name:
           <input
@@ -37,5 +32,26 @@
         <p><input type="reset" value="Reset" /></p>
       </form>
     </div>
+
+    <a href="/check">Check Student Status</a>
+
+    <script th:inline="javascript">
+      var message = /*[[${message}]]*/ null;
+
+      if (message) {
+        if (message === "EMPTY") {
+          alert("name or class was not filled");
+        } else if (message === "DUPLICATE") {
+          alert("This student was already added to database");
+        } else if (message.startsWith("SUCCESS:")) {
+          var parts = message.split(":");
+          var name = parts[1];
+          var studentClass = parts[2];
+          alert(
+            "Student added (name: " + name + ", Class: " + studentClass + ") ",
+          );
+        }
+      }
+    </script>
   </body>
 </html>
