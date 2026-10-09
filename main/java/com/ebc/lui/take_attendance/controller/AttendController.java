@@ -5,6 +5,7 @@ import com.ebc.lui.take_attendance.service.AttendService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -44,9 +45,13 @@ public class AttendController {
     }
 
     @PostMapping("/add")
-    public String studentAdd(@ModelAttribute @RequestPart("data") Student student, Model model){
-        attendService.save(student.getName(), student.getStudent_class());
-        return "display_test";
+    public String studentAdd(@ModelAttribute Student student, Model model){
+        String result = attendService.save(student.getName(), student.getStudent_class());
+
+        model.addAttribute("message", result);
+        model.addAttribute("student", new Student());
+
+        return "add";
     }
 
     @GetMapping("/check")
@@ -62,4 +67,37 @@ public class AttendController {
         return "redirect:/check";
     }
 
+    @PostMapping("/attend/{id}")
+    public String takeAttend(@PathVariable Integer id){
+        attendService.addAttendRecord(id);
+        return "redirect:/check";
+    }
+
+    @PostMapping("/cancel_attend/{id}")
+    public String removeAttend(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
+        boolean notZero = attendService.removeAttendRecord(id);
+
+        if (!notZero) {
+            redirectAttributes.addFlashAttribute("errMsgAttend", "The attendance count is already 0");
+        }
+
+        return "redirect:/check";
+    }
+
+    @PostMapping("/ask_leave/{id}")
+    public String takeAskLeave(@PathVariable Integer id) {
+        attendService.addAskLeaveRecord(id);
+        return "redirect:/check";
+    }
+
+    @PostMapping("/remove_ask_leave/{id}")
+    public String removeAskLeave(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
+        boolean notZero = attendService.removeAskLeaveRecord(id);
+
+        if (!notZero) {
+            redirectAttributes.addFlashAttribute("errMsgAskLeave", "The ask for leave count is already 0");
+        }
+
+        return "redirect:/check";
+    }
 }
