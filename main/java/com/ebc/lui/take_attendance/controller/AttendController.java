@@ -30,12 +30,14 @@ public class AttendController {
         return "Hello World";
     }
 
-
-    //Replaced by login function
     @GetMapping("/")
-    @ResponseBody
-    public String password(){
-        return "This page expected to have a password page";
+    public String add(){
+        return "redirect:/add";
+    }
+
+    @GetMapping("/login")
+    public String loginPage(){
+        return "login";
     }
 
     @GetMapping("/add")

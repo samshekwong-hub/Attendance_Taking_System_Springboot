@@ -71,6 +71,10 @@
         </tr>
       </table>
 
+      <form th:action="@{/logout}" method="post">
+        <button type="submit">logout</button>
+      </form>
+
       <!-- Error message for when attendance record is already 0 -->
       <script th:inline="javascript">
         var errorMessage = /*[[${errMsgAttend}]]*/ null;
