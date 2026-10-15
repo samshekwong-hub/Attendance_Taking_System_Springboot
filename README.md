@@ -22,6 +22,7 @@ User can also clicked "logout" button to logout the system in other pages. </br>
 After sign-in, user can add students' record by enter their name and class. </br> 
 The app can detect whether student already having record in database and prevent duplicated entries. </br>
 If user forgets to enter either student's name or class, the add student record also not be processed. </br>
+User can modified the attendance and ask for leave records by clicking "-". 
 <img width="1913" height="948" alt="Screenshot from 2026-10-16 02-06-26" src="https://github.com/user-attachments/assets/1fb84d39-f21d-40de-a87c-34eb84f8458c" />
 
 ### Check Student Record
