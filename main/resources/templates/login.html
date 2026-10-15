@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Student Tutoring</title>
+    <link th:href="@{/styles/main.css}" rel="stylesheet" />
     <script>
       function checkEmpty() {
         const username = document.getElementById("username").value.trim();
@@ -17,20 +18,33 @@
     </script>
   </head>
   <body>
-    <h2>Login</h2>
-    <div th:if="${param.error}">Wrong username or password</div>
-    <div th:if="${param.logout}">Logout success</div>
+    <div class="container" id="table-container">
+      <h2>Login</h2>
 
-    <form th:action="@{/login}" method="post" onsubmit="return checkEmpty()">
-      <div>
-        <label>Username: </label
-        ><input type="text" id="username" name="username" />
+      <div class="form-contents">
+        <div th:if="${param.error}">
+          <p class="notice" id="wrong-name">Wrong username or password</p>
+        </div>
+        <div th:if="${param.logout}">
+          <p class="notice" id="logout-success">Logout success</p>
+        </div>
+
+        <form
+          th:action="@{/login}"
+          method="post"
+          onsubmit="return checkEmpty();"
+        >
+          <div class="login-input-container">
+            <label>Username: </label
+            ><input type="text" id="username" name="username" />
+          </div>
+          <div class="login-input-container">
+            <label>Password: </label
+            ><input type="password" id="password" name="password" />
+          </div>
+          <button type="submit" class="submit">Login</button>
+        </form>
       </div>
-      <div>
-        <label>Password: </label
-        ><input type="password" id="password" name="password" />
-      </div>
-      <button type="submit">Login</button>
-    </form>
+    </div>
   </body>
 </html>

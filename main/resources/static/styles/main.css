@@ -1,0 +1,186 @@
+html,
+body {
+  height: 100%;
+  margin: 0%;
+}
+
+body {
+  background-color: #d2fcd5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Login page */
+.container {
+  background-color: white;
+  border-radius: 1rem;
+  align-self: center;
+  width: 75%;
+  max-width: 400px;
+  box-shadow: 0.1rem 0.1rem 0.2rem green;
+  padding: 2rem 3rem;
+  align-content: center;
+}
+
+h2 {
+  font-family: sans-serif;
+  margin: 0 auto 5% auto;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.login-input-container {
+  margin: 1rem 0;
+  text-align: left;
+  font-family: sans-serif;
+}
+
+.login-input-container input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.4rem;
+  margin-top: 0.3rem;
+}
+
+button {
+  display: block;
+  margin: 1.2rem auto 0;
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
+  border: 0;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  width: 80%;
+  align-self: center;
+}
+
+button.submit {
+  background-color: #55f26f;
+  transition-duration: 0.1s;
+}
+
+button.submit:hover {
+  background-color: #5ec56f;
+  box-shadow: 0.1rem 0.1rem 0.2rem green;
+}
+
+/* Add Student Page */
+button.reset {
+  background-color: #ee4848;
+  color: white;
+  transition-duration: 0.1s;
+}
+
+button.reset:hover {
+  background-color: #a30b0b;
+  box-shadow: 0.1rem 0.1rem 0.2rem red;
+}
+
+.submit-reset-container {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.check-status {
+  width: 90%;
+  background-color: #cfd2d3;
+}
+
+.check-status:hover {
+  background-color: #a4a5a5;
+  box-shadow: 0.1rem 0.1rem 0.2rem grey;
+}
+
+/* Check Attendance Table Page*/
+#table-container {
+  width: 100%;
+  max-width: 650px;
+  height: auto;
+}
+
+.scrollable-table {
+  height: 30rem;
+  overflow-y: auto;
+  width: 35rem;
+  margin: 0 auto;
+}
+
+.scrollable-table > .content-table {
+  width: 100%;
+}
+
+.content-table {
+  border-collapse: collapse;
+  margin: 0 auto;
+  font-size: 0.7em;
+  width: 30rem;
+  /* min-width: 400px; */
+}
+
+.content-table th {
+  background-color: #009879;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  font-family: sans-serif;
+  width: 10%;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.content-table thead th,
+td {
+  padding: 1rem, 2rem;
+}
+
+.content-table tbody tr {
+  border-bottom:
+    1px,
+    solid lightgray;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+  background-color: lightgray;
+}
+
+.content-table tbody tr:last-of-type {
+  border-bottom: 0.1rem solid #009879;
+}
+
+.container-td {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.display-submit {
+  padding: 0;
+  width: 1rem;
+  border-radius: 0.2rem;
+  margin: 0.5rem;
+}
+
+.remove-record-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-container-table-page {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.btn-container-table-page button {
+  width: 40%;
+}
+
+@media (max-width: 450px) {
+  table {
+    display: block;
+    overflow: auto;
+    white-space: nowrap;
+  }
+}

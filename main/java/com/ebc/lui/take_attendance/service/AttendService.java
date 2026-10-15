@@ -35,10 +35,7 @@ public class AttendService {
         }
 
         // Else --> store the student value to DB
-        Student student = new Student();
-        student.setName(studentName);
-        student.setStudent_class(studentClass);
-
+        Student student = new Student(studentName, studentClass);
         attendRepository.save(student);
 
         return "SUCCESS:" + studentName + ": " + studentClass;
