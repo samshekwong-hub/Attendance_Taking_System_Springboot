@@ -48,7 +48,7 @@ public class AttendController {
 
     @PostMapping("/add")
     public String studentAdd(@ModelAttribute Student student, Model model){
-        String result = attendService.save(student.getName(), student.getStudent_class());
+        String result = attendService.save(student.getName(), student.getStudentClass());
 
         model.addAttribute("message", result);
         model.addAttribute("student", new Student());

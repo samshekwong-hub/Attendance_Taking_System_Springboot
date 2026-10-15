@@ -34,7 +34,7 @@ public class AttendSecureConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login", "/css/**", "/js/**").permitAll()     // only login page and CSS, JS can be visited without login
+                        .requestMatchers("/login", "/css/**", "/js/**", "/styles/**").permitAll()     // only login page and CSS, JS can be visited without login
                         .anyRequest().authenticated()                                            // Except those on top, user need to be authorized (login)
                 )
                 .formLogin(form -> form

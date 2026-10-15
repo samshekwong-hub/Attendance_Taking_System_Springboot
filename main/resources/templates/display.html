@@ -3,77 +3,99 @@
   <head>
     <meta charset="UTF-8" />
     <title>Student Tutoring</title>
+    <link th:href="@{/styles/main.css}" rel="stylesheet" />
   </head>
   <body>
     <div class="container" id="table-container">
-      <table>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Class</th>
-          <th>Attendance</th>
-          <th>Ask for Leave</th>
-          <th>Take Attendance</th>
-          <th>Take Ask for Leave</th>
-          <th>Remove Record</th>
-        </tr>
-        <tr th:each="student: ${students}">
-          <td th:text="${student.id}" />
-          <td th:text="${student.name}" />
-          <td th:text="${student.student_class}" />
-          <td th:text="${student.attendance_count}" />
-          <td th:text="${student.ask_leave_count}" />
-          <td>
-            <div class="container-td">
-              <form
-                action=""
-                th:action="@{/attend/{id}(id=${student.id})}"
-                method="post"
-              >
-                <button type="submit">+</button>
-              </form>
-              <form
-                action=""
-                th:action="@{/cancel_attend/{id}(id=${student.id})}"
-                method="post"
-              >
-                <button type="submit">-</button>
-              </form>
-            </div>
-          </td>
-          <td>
-            <div class="container-td">
-              <form
-                action=""
-                th:action="@{/ask_leave/{id}(id=${student.id})}"
-                method="post"
-              >
-                <button type="submit">+</button>
-              </form>
-              <form
-                action=""
-                th:action="@{/remove_ask_leave/{id}(id=${student.id})}"
-                method="post"
-              >
-                <button type="submit">-</button>
-              </form>
-            </div>
-          </td>
-          <td>
-            <form
-              action=""
-              th:action="@{/remove/{id}(id=${student.id})}"
-              method="post"
-            >
-              <button type="submit">Remove</button>
-            </form>
-          </td>
-        </tr>
-      </table>
+      <div class="scrollable-table">
+        <table class="content-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Class</th>
+              <th>Attendance</th>
+              <th>Ask for Leave</th>
+              <th>Take Attendance</th>
+              <th>Take Ask for Leave</th>
+              <th>Remove Record</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="student: ${students}">
+              <td th:text="${student.id}" />
+              <td th:text="${student.name}" />
+              <td th:text="${student.studentClass}" />
+              <td th:text="${student.attendanceCount}" />
+              <td th:text="${student.askLeaveCount}" />
+              <td>
+                <div class="container-td">
+                  <form
+                    action=""
+                    th:action="@{/attend/{id}(id=${student.id})}"
+                    method="post"
+                  >
+                    <button type="submit" class="display-submit">+</button>
+                  </form>
+                  <form
+                    action=""
+                    th:action="@{/cancel_attend/{id}(id=${student.id})}"
+                    method="post"
+                  >
+                    <button type="submit" class="display-submit remove">
+                      -
+                    </button>
+                  </form>
+                </div>
+              </td>
+              <td>
+                <div class="container-td">
+                  <form
+                    action=""
+                    th:action="@{/ask_leave/{id}(id=${student.id})}"
+                    method="post"
+                  >
+                    <button type="submit" class="display-submit">+</button>
+                  </form>
+                  <form
+                    action=""
+                    th:action="@{/remove_ask_leave/{id}(id=${student.id})}"
+                    method="post"
+                  >
+                    <button type="submit" class="display-submit remove">
+                      -
+                    </button>
+                  </form>
+                </div>
+              </td>
+              <td class="remove-record-col">
+                <form
+                  action=""
+                  th:action="@{/remove/{id}(id=${student.id})}"
+                  method="post"
+                >
+                  <button
+                    type="submit"
+                    class="display-submit remove remove-record"
+                  >
+                    -
+                  </button>
+                </form>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-      <form th:action="@{/logout}" method="post">
-        <button type="submit">logout</button>
-      </form>
+      <div class="btn-container-table-page">
+        <form action="/add">
+          <button type="submit" class="check-status logout">Back</button>
+        </form>
+
+        <form th:action="@{/logout}" method="post">
+          <button type="submit" class="check-status logout">logout</button>
+        </form>
+      </div>
 
       <!-- Error message for when attendance record is already 0 -->
       <script th:inline="javascript">
@@ -90,8 +112,6 @@
           alert("Ask for leave count is already 0");
         }
       </script>
-
-      <a href="/add">Back</a>
     </div>
   </body>
 </html>
